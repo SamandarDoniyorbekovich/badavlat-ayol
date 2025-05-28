@@ -16,6 +16,17 @@ function generatePromoCode() {
   return code;
 }
 
+const allowedPrefixes = ['50', '71', '75', '76', '77', '88', '90', '91', '93', '94', '95', '97', '99', '33'];
+
+function isValidUzPhoneNumber(phone: string): boolean {
+  if (!phone.startsWith('998')) return false;
+  if (phone.length !== 12) return false;
+  const operatorCode = phone.slice(3, 5);
+  if (!allowedPrefixes.includes(operatorCode)) return false;
+  const rest = phone.slice(5);
+  return /^\d{7}$/.test(rest);
+}
+
 const RegisterPage = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -23,18 +34,6 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [isPhoneValid, setIsPhoneValid] = useState(true);
-
-  // Ruxsat etilgan operator kodlari
-  const allowedPrefixes = ['50', '71', '75', '76', '77', '88', '90', '91', '93', '94', '95', '97', '99', '33'];
-
-  function isValidUzPhoneNumber(phone: string): boolean {
-    if (!phone.startsWith('998')) return false;
-    if (phone.length !== 12) return false;
-    const operatorCode = phone.slice(3, 5);
-    if (!allowedPrefixes.includes(operatorCode)) return false;
-    const rest = phone.slice(5);
-    return /^\d{7}$/.test(rest);
-  }
 
   const handlePhoneChange = (value: string) => {
     setPhone(value);
@@ -47,7 +46,6 @@ const RegisterPage = () => {
     if (!isValidUzPhoneNumber(phone)) return;
 
     setIsLoading(true);
-
     const code = generatePromoCode();
     setPromoCode(code);
     setSuccess(true);
@@ -67,27 +65,32 @@ const RegisterPage = () => {
     }
   };
 
-  // Telegramga ketma-ket 2 userga yuborish funksiyasi
-// Telegramga ketma-ket 5 ta xabar yuborish
-const handleTelegramRedirect = () => {
-  const baseMessage = 
-    `Assalomu alaykum.%0A` +
-    `Ismim: ${encodeURIComponent(name)}%0A` +
-    `Telefon raqamim: +${encodeURIComponent(phone)}%0A%0A` +
-    `Kurs uchun 75% chegirma yutib olgandim. Promokod: ${encodeURIComponent(promoCode)}%0A%0A` +
-    `Menga ma'lumot bera olasizmi?`;
+  const handleTelegramRedirect = () => {
+    const baseMessage =
+      `Assalomu alaykum.%0A` +
+      `Ismim: ${encodeURIComponent(name)}%0A` +
+      `Telefon raqamim: +${encodeURIComponent(phone)}%0A%0A` +
+      `Kurs uchun 75% chegirma yutib olgandim. Promokod: ${encodeURIComponent(promoCode)}%0A%0A` +
+      `Menga ma'lumot bera olasizmi?`;
 
-  const users = ['gozallina', 'Dilnoz_Academy'];
+    const users = ['gozallina', 'Dilnoz_Academy'];
 
-  // 5 ta xabar ketma-ket yuboriladi, 1,3,5-chi user1 ga, 2,4-chi user2 ga
-  for (let i = 0; i < 5; i++) {
-    const user = (i % 2 === 0) ? users[0] : users[1]; // i = 0,2,4 user1; i=1,3 user2
-    setTimeout(() => {
-      window.open(`https://t.me/${user}?text=${baseMessage}`, '_blank');
-    }, i * 2000); // 2 soniya farq bilan
-  }
-};
+    let assignedUserIndex = localStorage.getItem('assignedUserIndex');
+    if (assignedUserIndex === null) {
+      assignedUserIndex = Math.floor(Math.random() * 2).toString();
+      localStorage.setItem('assignedUserIndex', assignedUserIndex);
+    }
 
+    const mainUser = users[parseInt(assignedUserIndex)];
+    const secondaryUser = users[1 - parseInt(assignedUserIndex)];
+
+    for (let i = 0; i < 5; i++) {
+      const currentUser = i % 2 === 0 ? mainUser : secondaryUser;
+      setTimeout(() => {
+        window.open(`https://t.me/${currentUser}?text=${baseMessage}`, '_blank');
+      }, i * 2000);
+    }
+  };
 
   return (
     <div className="register-container">
@@ -136,7 +139,7 @@ const handleTelegramRedirect = () => {
             </p>
 
             <p style={{ marginTop: '20px' }}>
-              Hoziroq mutaxasis bilan bogʻlaning va kuponi orqali chegirmadan foydalaning
+              Hoziroq mutaxassis bilan bogʻlaning va kuponi orqali chegirmadan foydalaning
             </p>
             <button onClick={handleTelegramRedirect}>Mutaxassis bilan bog‘lanish</button>
           </div>
