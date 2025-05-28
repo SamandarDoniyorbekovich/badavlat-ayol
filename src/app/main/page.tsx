@@ -69,10 +69,10 @@ const handleSubmit = async (e: React.FormEvent) => {
       </div>
 
       <div className="form-section">
-        <div className="logo-placeholder"><Image width={150} height={150} src={logo} alt='logo'/></div>
+        <div className="logo-placeholder"><Image src={logo} alt='logo'/></div>
         {!success ? (
           <form onSubmit={handleSubmit} className="form">
-            <h2>Ro‘yxatdan o‘tish</h2>
+            <h3>Badavlat ayollar safiga qoʻshilish uchun roʻyxatdan oʻting</h3>
             <input
               type="text"
               placeholder="Ismingiz"
@@ -97,8 +97,10 @@ const handleSubmit = async (e: React.FormEvent) => {
           </form>
         ) : (
           <div className="success-message">
-            <h3>Siz muvaffaqiyatli ro‘yxatdan o‘tdingiz!</h3>
+            <h3>Tabriklaymiz! Sizga kurs uchun 75% chegirma kuponi taqdim etildi</h3>
             <p>Promo kod: <strong>{promoCode}</strong></p>
+
+            <p style={{marginTop:"20px"}}>Hoziroq mutaxasis bilan bogʻlaning va kuponi orqali chegirmadan foydalaning</p>
             <button onClick={handleTelegramRedirect}>Mutaxassis bilan bog‘lanish</button>
           </div>
         )}

@@ -13,7 +13,7 @@ body {
 
 .top-section {
   height: 220px;
-  background-color: #1ecb81;
+  background-color: #145f41;
   border-bottom-left-radius: 80px;
   position: relative;
   display: flex;
@@ -24,6 +24,11 @@ body {
 .logo-placeholder {
     display: flex;
     justify-content: center;
+}
+
+.logo-placeholder img{
+ width: 150px;
+  height: 150px;
 }
 
 .form-section {
@@ -38,7 +43,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.form h2 {
+.form h3 {
     margin-top: 20px;
   text-align: center;
   margin-bottom: 20px;
@@ -104,8 +109,27 @@ body {
 
 .bottom-section {
   height: 160px;
-  background-color: #318862;
+  background-color: #10704a;
   border-top-left-radius: 80px;
   border-top-right-radius: 80px;
   margin-top: 30px;
+}
+
+
+@media (min-width: 356px) and (max-width: 420px) {
+ .form-section {
+  flex: 1;
+  background: white;
+  z-index: 1;
+  margin: -100px auto 0 auto;
+  width: 90%;
+  max-width: 350px;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.logo-placeholder img{
+ width: 100px;
+  height: 100px;
+}
 }
