@@ -77,7 +77,7 @@ body {
   width: 100%;
   margin-top: 30px !important;
   padding: 12px;
-  background-color: #1ecb81;
+  background-color: #145f41;
   color: white;
   border: none;
   border-radius: 8px;
@@ -100,11 +100,17 @@ body {
 .success-message button {
   margin-top: 30px;
   padding: 12px 20px;
-  background-color: #1ecb81;
+  background-color: #145f41;
   border: none;
   border-radius: 8px;
   color: white;
   cursor: pointer;
+}
+
+.success-message p{
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
 }
 
 .bottom-section {
@@ -113,6 +119,18 @@ body {
   border-top-left-radius: 80px;
   border-top-right-radius: 80px;
   margin-top: 30px;
+}
+
+.promokod{
+  width: 120px;
+  height: 30px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #10704a;
+  color: white;
+  margin-left: 10px;
 }
 
 

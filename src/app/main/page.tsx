@@ -97,8 +97,8 @@ const handleSubmit = async (e: React.FormEvent) => {
           </form>
         ) : (
           <div className="success-message">
-            <h3>Tabriklaymiz! Sizga kurs uchun 75% chegirma kuponi taqdim etildi</h3>
-            <p>Promo kod: <strong>{promoCode}</strong></p>
+            <h3>Tabriklaymiz! Sizga kurs uchun 75% chegirma kuponi taqdim etildi</h3> <br />
+            <p style={{display:"flex"}}>KUPON: <div className='promokod'>{promoCode}</div></p>
 
             <p style={{marginTop:"20px"}}>Hoziroq mutaxasis bilan bogʻlaning va kuponi orqali chegirmadan foydalaning</p>
             <button onClick={handleTelegramRedirect}>Mutaxassis bilan bog‘lanish</button>
