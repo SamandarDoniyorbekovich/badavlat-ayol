@@ -101,10 +101,12 @@ body {
   margin-top: 30px;
   padding: 12px 20px;
   background-color: #145f41;
+  width: 100%;
   border: none;
   border-radius: 8px;
   color: white;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .success-message p{
