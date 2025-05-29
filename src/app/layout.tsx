@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Script from 'next/script'
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,8 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Facebook Pixel Script */}
-        <Script id="facebook-pixel" strategy="afterInteractive">
+        {/* Meta Pixel Script */}
+        <Script id="meta-pixel" strategy="afterInteractive">
           {`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -37,12 +37,17 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '927304418891903');
+            fbq('init', '2349418222111835');
             fbq('track', 'PageView');
           `}
         </Script>
         <noscript>
-          <img height="1" width="1" style={{ display: 'none' }} src="https://www.facebook.com/tr?id=927304418891903&ev=PageView&noscript=1" />
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=2349418222111835&ev=PageView&noscript=1"
+          />
         </noscript>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
